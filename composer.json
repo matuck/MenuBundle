@@ -7,13 +7,14 @@
         "email" : "matuck@matuck.com"
     }],
     "keywords" : [
-        "menu, nav-bar, navbar"
+        "menu nav-bar navbar"
     ],
     "license" : [
         "MIT"
     ],
     "require" : {
-
+	"stof/doctrine-extensions-bundle": "^1.2",
+	"knplabs/knp-menu-bundle": "^2.1"
     },
     "autoload" : {
         "psr-0" : {
@@ -27,7 +28,7 @@
     }],
     "extra" : {
     "branch-alias" : {
-            "dev-master" : "master"
+            "dev-master" : "master-dev"
         }
     }
 }
