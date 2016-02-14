@@ -1,0 +1,10 @@
+{% if menu %}
+<ul>
+    {% for entry in menu %}
+        <li>
+            <a href="{{ entry.url }}">{{ entry.title }}</a>
+                {{ include('matuckGeorgeGrantCoBundle:Menu:menuEntry.html.twig', { 'menu': entry.__children }) }}
+        </li>
+    {% endfor %}
+</ul>
+{% endif %}

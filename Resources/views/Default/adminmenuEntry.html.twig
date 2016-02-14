@@ -1,0 +1,25 @@
+{% if menu %}
+<ul>
+    {% for entry in menu %}
+        <li><div>
+
+                {% if entry.lft > top %}
+                    <a href="{{ path('adminmenuup', {'id': entry.id }) }}" class="btn btn-xs btn-success" role="button"><span class="glyphicon glyphicon-menu-up"></span></a>
+                {% else  %}
+                    <a href="#" class="btn btn-xs btn-success disabled"><span class="glyphicon glyphicon-menu-up"></span></a>
+                {% endif %}
+                {% if entry.rgt < bottom %}
+                    <a href="{{ path('adminmenudown', {'id': entry.id }) }}" class="btn btn-xs btn-success" role="button"><span class="glyphicon glyphicon-menu-down"></span></a>
+                {% else %}
+                    <a href="{{ path('adminmenudown', {'id': entry.id }) }}" class="btn btn-xs btn-success disabled" role="button"><span class="glyphicon glyphicon-menu-down"></span></a>
+                {% endif %}
+                <a href="{{ path('adminmenuadd', {'id': entry.id }) }}" class="btn btn-xs btn-primary" role="button"><span class="glyphicon glyphicon-plus"></span>Child Menu</a>
+                <a href="{{ path('adminmenuedit', {'id': entry.id }) }}" class="btn btn-xs btn-primary" role="button"><span class="glyphicon glyphicon-edit"></span></a>
+                <a href="{{ path('adminmenudelete', {'id': entry.id }) }}" class="btn btn-xs btn-danger" role="button"><span class="glyphicon glyphicon-trash"></span></a>
+                <a href="{{ entry.url }}">{{ entry.title }}</a>
+                    {{ include('matuckGeorgeGrantCoBundle:Menu:adminmenuEntry.html.twig', { 'menu': entry.children, 'top': entry.lft+1, 'bottom': entry.rgt-1}) }}
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+{% endif %}

@@ -1,0 +1,66 @@
+MatuckMenuBundle
+================
+
+The MatuckMenu provides an easy to create and manage menus for your application.
+It is build atop the [KnpMenuBundle](https://github.com/KnpLabs/KnpMenuBundle) for Symfony2
+
+
+## Installation
+
+MatuckMenuBundle uses Composer, please checkout the [composer website](http://getcomposer.org) for more information.
+
+The simple following command will install `matuckmenubundle` into your project. It also add a new
+entry in your `composer.json` and update the `composer.lock` as well.
+
+```bash
+$ composer require matuck/menubundle
+```
+##Configuration
+
+
+Add the below entries to AppKernel.php
+```
+new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+new matuck\MenuBundle\matuckMenuBundle()
+```
+
+### Minimum setup on Doctrine Extensions
+Add the below to config.yml Keep in mind you probably alredy have some of these entries.
+You may also change some of these settings but that will depened upon your doctrine extentions usage.
+...
+doctrine:
+    orm:
+        mappings:
+            gedmo_tree:
+                type: annotation
+                prefix: Gedmo\Tree\Entity
+                dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Tree/Entity"
+                alias: GedmoTree # (optional) it will default to the name set for the mapping
+                is_bundle: false
+
+stof_doctrine_extensions:
+    orm:
+        default: ~
+
+...
+
+### Setup KNP_Menu
+Add the below to config.yml
+...
+knp_menu:
+    # use "twig: false" to disable the Twig extension and the TwigRenderer
+    twig:
+        template: matuckMenuBundle::knp_menu.html.twig
+    #  if true, enables the helper for PHP templates
+    templating: false
+    # the renderer to use, list is also available by default
+    default_renderer: twig
+...
+## Getting Started
+
+
+## What now?
+
+
+## Credits
