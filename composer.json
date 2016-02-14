@@ -1,0 +1,33 @@
+{
+    "name" : "matuck/menubundle",
+    "description" : "A system provide menus, and an admin panel to manage them.",
+    "type" : "symfony-bundle",
+    "authors" : [{
+        "name" : "matuck",
+        "email" : "matuck@matuck.com"
+    }],
+    "keywords" : [
+        "menu, nav-bar, navbar"
+    ],
+    "license" : [
+        "MIT"
+    ],
+    "require" : {
+
+    },
+    "autoload" : {
+        "psr-0" : {
+            "matuck\\MenuBundle" : ""
+        }
+    },
+    "target-dir" : "matuck/MenuBundle",
+    "repositories" : [{
+	"type": "vcs",
+	"url": "https://github.com/matuck/MenuBundle.git"
+    }],
+    "extra" : {
+    "branch-alias" : {
+            "dev-master" : "master"
+        }
+    }
+}
