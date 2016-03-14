@@ -1,0 +1,19 @@
+{% if top %}
+    <ul class="nav navbar-nav">
+{% else %}
+    <ul class="nav navbar-nav dropdown-menu">
+{% endif %}
+        {% for menu in menus %}
+            {% if menu.hasChildren() %}
+                <li class="dropdown">
+                    <a href="{{ menu.url }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        {{ menu.title }}
+                        <span class="caret"></span>
+                    </a>
+                    {{ include('matuckMenuBundle::bootstrapmenu.html.twig', {menus: menu.children, top: false}) }}
+                </li>
+            {% else  %}
+                <li><a href="{{ menu.url }}">{{ menu.title }}</a></li>
+            {% endif %}
+        {% endfor %}
+</ul>

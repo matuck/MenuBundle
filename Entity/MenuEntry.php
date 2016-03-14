@@ -229,4 +229,28 @@ class MenuEntry
     {
         return $this->children;
     }
+
+    /**
+     * @param array $children
+     */
+    public function setChildren($children)
+    {
+        $this->children = $children;
+    }
+
+    /**
+     * Check to see if this entry has children
+     * @return bool
+     */
+    public function hasChildren()
+    {
+        if(count($this->children) > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

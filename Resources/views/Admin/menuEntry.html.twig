@@ -1,0 +1,19 @@
+{% if menu %}
+<ol class="dd-list">
+    {% for entry in menu %}
+        <li class="dd-item" data-id="{{ entry.id }}">
+            <div class="dd-handle">
+                <span>
+                    <a class="dd-nodrag" href="{{ path('matuckmenuadd', {'parent': entry.id }) }}" class="btn btn-xs btn-primary" role="button"><span class="glyphicon glyphicon-plus"></span>Child Menu</a>
+                    <a class="dd-nodrag" href="{{ path('matuckmenuedit', {'menu': entry.id }) }}" class="btn btn-xs btn-primary" role="button"><span class="glyphicon glyphicon-edit">Edit</span></a>
+                    <a class="dd-nodrag" href="{{ path('matuckmenudelete', {'menu': entry.id }) }}" class="btn btn-xs btn-danger" role="button"><span class="glyphicon glyphicon-trash">Delete</span></a>
+                    <a class="dd-nodrag" class="title" href="{{ entry.url }}">{{ entry.title }}</a>
+                </span>
+            </div>
+            {% if entry.children|length > 0 %}
+            {{ include('matuckMenuBundle:Admin:menuEntry.html.twig', { 'menu': entry.children }) }}
+            {% endif %}
+        </li>
+    {% endfor %}
+</ol>
+{% endif %}

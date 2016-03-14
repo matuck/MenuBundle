@@ -10,8 +10,8 @@
         {{ form_start(menuForm) }}
         {{ form_row(menuForm.title) }}
         {{ form_row(menuForm.url) }}
-        <a href="{{ path('adminmenu') }}" class="btn btn-primary pull-right" role="button">Cancel</a>
-        <button type="submit" value="Submit" class="btn btn-primary pull-right">Create</button>
+        <a href="{{ path('matuckmenumanage', {'menu': parentmenu.getRoot().getId()}) }}" class="btn btn-primary pull-right" role="button"><span class="glyphicon glyphicon-ban-circle"></span> Cancel</a>
+        <button type="submit" value="Submit" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus"> </span> Create</button>
         {{ form_end(menuForm) }}
     </div>
 {% endblock %}

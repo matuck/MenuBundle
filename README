@@ -2,7 +2,7 @@ MatuckMenuBundle
 ================
 
 The MatuckMenu provides an easy to create and manage menus for your application.
-It is build atop the [KnpMenuBundle](https://github.com/KnpLabs/KnpMenuBundle) for Symfony2
+
 
 
 ## Installation
@@ -20,47 +20,36 @@ $ composer require matuck/menubundle
 
 Add the below entries to AppKernel.php
 ```
-new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
-new Knp\Bundle\MenuBundle\KnpMenuBundle(),
 new matuck\MenuBundle\matuckMenuBundle()
 ```
 
-### Minimum setup on Doctrine Extensions
-Add the below to config.yml Keep in mind you probably alredy have some of these entries.
-You may also change some of these settings but that will depened upon your doctrine extentions usage.
-...
-doctrine:
-    orm:
-        mappings:
-            gedmo_tree:
-                type: annotation
-                prefix: Gedmo\Tree\Entity
-                dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Tree/Entity"
-                alias: GedmoTree # (optional) it will default to the name set for the mapping
-                is_bundle: false
+### Setup Doctrine Extensions
+Folling the instructions to install doctrine extensions.  The main extension we need is tree.
 
-stof_doctrine_extensions:
-    orm:
-        default: ~
 
-...
-
-### Setup KNP_Menu
-Add the below to config.yml
-...
-knp_menu:
-    # use "twig: false" to disable the Twig extension and the TwigRenderer
-    twig:
-        template: matuckMenuBundle::knp_menu.html.twig
-    #  if true, enables the helper for PHP templates
-    templating: false
-    # the renderer to use, list is also available by default
-    default_renderer: twig
-...
 ## Getting Started
+Add the routes to your application.  In your routing.yml add.  You can change the prefix,
+but I suggest you make it something that is secured by your firewall
+'''
+matuck_menu:
+    resource: "@matuckMenuBundle/Controller/"
+    type:     annotation
+    prefix:   /admin/menu
+'''
 
+Update the database to include the new entities
+'''
+php bin/console doctrine:schema:update --force
+'''
 
 ## What now?
+Build the menus in the panels.  In your template where you want to display the menu put
+'''
+{{ matuck_menu_render('main') }}
+{{ matuck_menu_render('main', 'matuckMenuBundle::bootstrapmenuright.html.twig') }}
+'''
 
-
-## Credits
+Main is the name of the root menu you want to show.
+The Second parameter can be deleted but allows you to pass a template file for rendering the menu.
+The bundle includes two template files.  bootstrapmenu.html.twig and bootstrapmenuright.html.twig.
+By creating your own template and passing it you can design the menus however you want.

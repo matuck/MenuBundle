@@ -1,0 +1,43 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+{% stylesheets '@matuckMenuBundle/Resources/public/css/nestable.css' filter='cssrewrite' %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+{% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+    <h1>Manage the {{ menu.title }} menu</h1>
+    <div>
+        <a href="{{ path('matuckmenu') }}" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-arrow-left"> </span> Back to main menu page</a>
+        <a href="{{ path('matuckmenuadd', {'id': menu.id }) }}" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-plus"> </span> Add Top Menu Entry</a>
+    </div>
+    <div class="menumanage">
+        <div class="dd">
+            {% if menu.children %}
+                {{ include('matuckMenuBundle:Admin:menuEntry.html.twig', { 'menu': menu.children }) }}
+            {% endif %}
+        </div>
+    </div>
+    <div class="formhidden">
+        {{ form_start(form) }}
+        {{ form_row(form) }}
+        {{ form_end(form) }}
+    </div>
+    <div>
+        <a href="{{ path('matuckmenumanage', {'menu': menu.getRoot().getId()}) }}" class="btn btn-primary pull-right" role="button"><span class="glyphicon glyphicon-ban-circle"></span> Cancel</a>
+        <button type="submit" value="Submit" onclick="sendOrder()" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-floppy-save"></span> Save</button>
+    </div>
+    {% javascripts '@matuckMenuBundle/Resources/public/js/*' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <script>
+        $('.dd').nestable({ /* config options */ });
+        var sendOrder = function() {
+            var data = JSON.stringify($('.dd').nestable('serialize'));
+            $('#form_order').val(data);
+            $('form[name="form"]').submit();
+        }
+    </script>
+{% endblock %}

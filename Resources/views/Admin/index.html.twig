@@ -1,0 +1,18 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <h1>Manage Menus</h1>
+    <div>
+        <a href="{{ path('matuckmenurootcreate') }}" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-plus"> </span> Add New Root Menu</a>
+    </div>
+    <div>
+        {% for menu in menus %}
+            <div class="rootmenu">
+                {{ menu.title }}
+                <span class="pull-left">
+                    <a href="{{ path('matuckmenumanage', {'menu': menu.id}) }}" class="" role="button"><span class = "glyphicon glyphicon-user"> Manage</span></a>
+                </span>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

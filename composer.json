@@ -13,8 +13,8 @@
         "MIT"
     ],
     "require" : {
-	"stof/doctrine-extensions-bundle": "^1.2",
-	"knplabs/knp-menu-bundle": "^2.1"
+	    "stof/doctrine-extensions-bundle": "^1.2",
+	    "symfony/assetic-bundle": "^2.7"
     },
     "autoload" : {
         "psr-0" : {

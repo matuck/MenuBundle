@@ -6,11 +6,11 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\UrlType;
 
 class MenuEntryType extends AbstractType
 {
     /**
+     * {@inheritdoc}
      * @param FormBuilderInterface $builder
      * @param array $options
      */
@@ -18,7 +18,7 @@ class MenuEntryType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, array('attr' => array('class' => 'form-control')))
-            ->add('url', URLType::class, array('attr' => array('class' => 'form-control')))
+            ->add('url', TextType::class, array('attr' => array('class' => 'form-control')))
         ;
     }
 
